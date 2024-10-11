@@ -48,8 +48,7 @@ func _on_timer_timeout() -> void:
 	
 	asteroid.position = Vector2(position_x.length, position_y.length)
 	asteroid.direction = Vector2(position_x.direction, position_y.direction)
-	
-	asteroid.scale = Vector2(1 , 1) * randf_range(1, 3)
+		
 	asteroid.rotation = randf_range(0, 2 * PI)
 	
 	add_child(asteroid)
