@@ -8,6 +8,7 @@ extends Node2D
 @onready var total_time: Timer = %TotalTime
 var current_game_time := 1
 var asteroid_time_interval := randf_range(0.5, 1)
+var max_speed := 50
 
 var asteroid_offscreen_position := 20
 var is_asteroid_x_turn := true
@@ -59,3 +60,6 @@ func _on_timer_timeout() -> void:
 func _on_total_time_timeout() -> void:
 	asteroid_time_interval = randf_range(3.0 / current_game_time, 5.0 / current_game_time)
 	current_game_time += 1
+
+func _process(delta: float) -> void:
+	ship.position += direction * max_speed * delta
