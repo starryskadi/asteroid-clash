@@ -8,6 +8,7 @@ var packed_scene = [
 
 var direction = Vector2(0, 0)
 var max_speed := randf_range(50, 100)
+var safe_spawn_added_size := 40 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,3 +21,8 @@ func _on_area_entered(area: Area2D) -> void:
 
 func _process(delta: float) -> void:
 	position += direction * max_speed * delta
+	var viewport_size := get_viewport_rect().size 
+
+	# Performance Fix: Delete the bullet if go out of the screen
+	if position.x < 0 or position.x > viewport_size.x + safe_spawn_added_size or position.y < 0 or position.y > viewport_size.y + safe_spawn_added_size:
+		queue_free()
